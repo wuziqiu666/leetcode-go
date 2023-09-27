@@ -1,30 +1,33 @@
 package main
 
-func search(nums []int, target int) bool {
-	l := 0
-	r := len(nums) - 1
-	for l <= r {
-		site := l + (r-l)/2
-		if nums[site] == target {
-			return true
-		}
-		if nums[site] == nums[l] {
-			l++
-			continue
-		}
-		if nums[l] <= nums[site] {
-			if target < nums[site] && target >= nums[l] {
-				r = site - 1
-			} else {
-				l = site + 1
-			}
-		} else {
-			if target > nums[site] && target <= nums[r] {
-				l = site + 1
-			} else {
-				r = site - 1
-			}
-		}
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func deleteDuplicates(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
 	}
-	return false
+	pre := new(ListNode)
+	write := pre
+	cur := &ListNode{Next: head}
+	for {
+		if cur.Next.Next == nil {
+			if cur.Next.Val != cur.Val {
+				write.Next = cur.Next
+			} else {
+				write.Next = nil
+			}
+			break
+		}
+		if cur.Next.Val != cur.Val && cur.Next.Val != cur.Next.Next.Val {
+			write.Next = cur.Next
+			write = write.Next
+		}
+		cur = cur.Next
+	}
+	return pre.Next
 }

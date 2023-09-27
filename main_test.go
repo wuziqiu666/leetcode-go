@@ -1,13 +1,21 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
-func TestSearch(t *testing.T) {
-	nums := []int{1, 0, 1, 1, 1, 1}
-	target := 0
-	found := search(nums, target)
-	if !found {
-		t.Errorf("get %v", found)
+func TestDeleteDuplicatess(t *testing.T) {
+	cases := [][]int{
+		{1, 2, 3, 3, 4, 4, 5},
+		{1, 1},
 	}
-
+	for _, c := range cases {
+		head := NewListNode(c)
+		head = deleteDuplicates(head)
+		got := head.String()
+		want := "[1, 2, 5]"
+		if got != want {
+			t.Fatalf("got %q, want %q", got, want)
+		}
+	}
 }
