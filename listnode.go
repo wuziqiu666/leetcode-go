@@ -24,9 +24,6 @@ func NewListNode(nodes []int) *ListNode {
 }
 
 func (l *ListNode) String() string {
-	if l == nil {
-		return ""
-	}
 	strList := make([]string, 0)
 	for l != nil {
 		strList = append(strList, fmt.Sprintf("%d", l.Val))

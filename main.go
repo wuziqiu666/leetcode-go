@@ -13,7 +13,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	}
 	pre := new(ListNode)
 	write := pre
-	cur := &ListNode{Next: head}
+	cur := &ListNode{Next: head, Val: head.Val - 1}
 	for {
 		if cur.Next.Next == nil {
 			if cur.Next.Val != cur.Val {
